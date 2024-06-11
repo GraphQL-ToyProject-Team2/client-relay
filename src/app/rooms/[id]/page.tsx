@@ -1,8 +1,8 @@
-export default function Room(props: any) {
+export default function Room({ params }: any) {
   return (
     <>
       <h1>Room</h1>
-      paramters : {props.params.id}
+      paramters : {params.id}
     </>
-  );
+  )
 }
