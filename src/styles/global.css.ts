@@ -12,11 +12,20 @@ globalStyle('*, *::before, *::after', {
   boxSizing: 'border-box',
 })
 
+globalStyle('body', {
+  width: 375,
+  backgroundColor: '#FFF',
+})
+
 globalStyle(':root', {
   overflowX: 'hidden',
   overflowY: 'scroll',
 
   width: '100%',
+  height: '100%',
+  display: 'flex',
+  backgroundColor: '#f7f7f7',
+  justifyContent: 'center',
   lineHeight: 1.5,
 })
 
