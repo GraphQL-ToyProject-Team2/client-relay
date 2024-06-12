@@ -2,7 +2,7 @@
 
 ## 👨‍👩‍👧‍👦 Authors
 
-<table align="center">
+<table>
     <tr align="center">
         <td style="min-width: 150px;" background-color="white">
             <a href="https://github.com/seojisoosoo">
