@@ -1,4 +1,4 @@
-# GraphQL를 활용한 airbnb 클론 코딩 프로젝트 - client
+# GraphQL, Apollo Client 기반 airbnb 클론 코딩 프로젝트 - client
 
 ## 👨‍👩‍👧‍👦 Authors
 
@@ -28,6 +28,6 @@
 ## 📚 Key Languages & Libraries
 
 - `Typescript`
-- `Next.js`
-- `vanilla-extract`
-- `Relay`
+- `React.js`
+- `styled-components`
+- `Apollo Client`
