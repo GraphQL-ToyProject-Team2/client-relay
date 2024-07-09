@@ -5,15 +5,15 @@ import styled from 'styled-components';
 import GlobalStyle from './styles/globalStyles';
 import WishList from './pages/WishList';
 import { loadQuery, RelayEnvironmentProvider } from 'react-relay';
-import { getAccommodationsQuery } from './queries/__generated__/getAccommodationsQuery.graphql';
+import { getAccommodationsQuery } from './relay/queries/__generated__/getAccommodationsQuery.graphql';
 import environment from './relay/environment';
-import getAccommodations from './queries/getAccommodations';
-import { getDetailQuery } from './queries/__generated__/getDetailQuery.graphql';
-import getDetail from './queries/getDetail';
+import getAccommodations from './relay/queries/getAccommodations';
+import { getDetailQuery } from './relay/queries/__generated__/getDetailQuery.graphql';
+import getDetail from './relay/queries/getDetail';
 import DetailWrapper from './components/DetailWrapper';
 import { Suspense } from 'react';
-import { getWishlistQuery } from './queries/__generated__/getWishlistQuery.graphql';
-import getWishlist from './queries/getWishlist';
+import { getWishlistQuery } from './relay/queries/__generated__/getWishlistQuery.graphql';
+import getWishlist from './relay/queries/getWishlist';
 
 const MobileContainer = styled.div`
   font-family: 'Pretendard Variable';

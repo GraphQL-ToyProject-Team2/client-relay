@@ -13,10 +13,10 @@ import {
   Tv,
 } from '@material-ui/icons';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
-import { PreloadedQuery, usePreloadedQuery } from 'react-relay';
-import getDetail from '../queries/getDetail';
-import { getDetailQuery } from '../queries/__generated__/getDetailQuery.graphql';
+import { useNavigate, useParams } from 'react-router-dom';
+import { PreloadedQuery, useMutation, usePreloadedQuery } from 'react-relay';
+import getDetail from '../relay/queries/getDetail';
+import { getDetailQuery } from '../relay/queries/__generated__/getDetailQuery.graphql';
 
 type Props = {
   queryRef: PreloadedQuery<getDetailQuery>;
@@ -24,12 +24,10 @@ type Props = {
 
 const Detail = (props: Props) => {
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const accommodation = usePreloadedQuery(getDetail, props.queryRef).accommodation;
-
-  const handleLike = () => {
-    console.log('toggle like');
-  };
+  // const [likeAccommodation, isInFlight] = useMutation<
 
   return (
     <>

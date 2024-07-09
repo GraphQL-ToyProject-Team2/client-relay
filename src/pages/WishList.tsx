@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { ChevronLeft } from '@material-ui/icons';
 import Footer from '../components/Footer';
 import { PreloadedQuery, usePreloadedQuery } from 'react-relay';
-import { getAccommodationsQuery } from '../queries/__generated__/getAccommodationsQuery.graphql';
-import getWishlist from '../queries/getWishlist';
+import { getAccommodationsQuery } from '../relay/queries/__generated__/getAccommodationsQuery.graphql';
+import getWishlist from '../relay/queries/getWishlist';
 
 type Props = {
   queryRef: PreloadedQuery<getAccommodationsQuery>;

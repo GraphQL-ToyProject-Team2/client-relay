@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { loadQuery, PreloadedQuery } from 'react-relay';
 import environment from '../relay/environment';
-import getDetail from '../queries/getDetail';
+import getDetail from '../relay/queries/getDetail';
 import Detail from '../pages/Detail';
-import type { getDetailQuery } from '../queries/__generated__/getDetailQuery.graphql';
+import type { getDetailQuery } from '../relay/queries/__generated__/getDetailQuery.graphql';
 
 const DetailWrapper = () => {
   const { id } = useParams<{ id: string }>();

@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Footer from '../components/Footer';
 import { PreloadedQuery, usePreloadedQuery } from 'react-relay';
-import getAccommodations from '../queries/getAccommodations';
-import { getAccommodationsQuery } from '../queries/__generated__/getAccommodationsQuery.graphql';
+import getAccommodations from '../relay/queries/getAccommodations';
+import { getAccommodationsQuery } from '../relay/queries/__generated__/getAccommodationsQuery.graphql';
 
 type Props = {
   queryRef: PreloadedQuery<getAccommodationsQuery>;
