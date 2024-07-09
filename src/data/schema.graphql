@@ -1,0 +1,27 @@
+type Accommodation {
+  id: ID!
+  title: String!
+  description: String
+  price: Float!
+  host: Host!
+  location: String!
+  images: [String!]
+  likes: Int!
+  isLiked: Boolean!
+}
+
+type Host {
+  id: ID!
+  name: String!
+  avatar: String
+  bio: String
+}
+
+type Query {
+  accommodations: [Accommodation!]!
+  accommodation(id: ID!): Accommodation
+}
+
+type Mutation {
+  likeAccommodation(id: ID!): Accommodation
+}
