@@ -17,6 +17,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { PreloadedQuery, useMutation, usePreloadedQuery } from 'react-relay';
 import getDetail from '../relay/queries/getDetail';
 import { getDetailQuery } from '../relay/queries/__generated__/getDetailQuery.graphql';
+import { likeAccommodationMutation } from '../relay/mutations/__generated__/likeAccommodationMutation.graphql';
+import likeAccommodation from '../relay/mutations/likeAccommodation';
 
 type Props = {
   queryRef: PreloadedQuery<getDetailQuery>;
@@ -27,7 +29,21 @@ const Detail = (props: Props) => {
   const { id } = useParams();
 
   const accommodation = usePreloadedQuery(getDetail, props.queryRef).accommodation;
-  // const [likeAccommodation, isInFlight] = useMutation<
+  const [commitMutation] = useMutation<likeAccommodationMutation>(likeAccommodation);
+
+  const handleLike = () => {
+    commitMutation({
+      variables: {
+        id: id,
+      },
+      optimisticResponse: {
+        likeAccommodation: {
+          id,
+          isLiked: !accommodation.isLiked,
+        },
+      },
+    });
+  };
 
   return (
     <>
