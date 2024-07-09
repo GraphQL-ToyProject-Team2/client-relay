@@ -21,7 +21,8 @@
     "react-relay": "^17.0.0",
     "react-router-dom": "^6.24.0",
     "styled-components": "^6.1.11",
-    "styled-reset": "^4.5.2"
+    "styled-reset": "^4.5.2",
+    "vite-plugin-relay": "^2.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
