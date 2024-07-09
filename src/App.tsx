@@ -4,6 +4,16 @@ import Detail from './pages/Detail';
 import styled from 'styled-components';
 import GlobalStyle from './styles/globalStyles';
 import WishList from './pages/WishList';
+import { loadQuery, RelayEnvironmentProvider } from 'react-relay';
+import { getAccommodationsQuery } from './queries/__generated__/getAccommodationsQuery.graphql';
+import environment from './relay/environment';
+import getAccommodations from './queries/getAccommodations';
+import { getDetailQuery } from './queries/__generated__/getDetailQuery.graphql';
+import getDetail from './queries/getDetail';
+import DetailWrapper from './components/DetailWrapper';
+import { Suspense } from 'react';
+import { getWishlistQuery } from './queries/__generated__/getWishlistQuery.graphql';
+import getWishlist from './queries/getWishlist';
 
 const MobileContainer = styled.div`
   font-family: 'Pretendard Variable';
@@ -20,17 +30,24 @@ const MobileContainer = styled.div`
   min-height: 100vh;
 `;
 
+const initialQueryRefMain = loadQuery<getAccommodationsQuery>(environment, getAccommodations, {});
+const initialQueryRefWishlist = loadQuery<getWishlistQuery>(environment, getWishlist, {});
+
 function App() {
   const router = createBrowserRouter([
-    { path: '/', element: <Main /> },
-    { path: '/detail/:id', element: <Detail /> },
-    { path: '/wishlist', element: <WishList /> },
+    { path: '/', element: <Main queryRef={initialQueryRefMain} /> },
+    { path: '/detail/:id', element: <DetailWrapper /> },
+    { path: '/wishlist', element: <WishList queryRef={initialQueryRefWishlist} /> },
   ]);
   return (
-    <MobileContainer>
-      <GlobalStyle />
-      <RouterProvider router={router} />
-    </MobileContainer>
+    <RelayEnvironmentProvider environment={environment}>
+      <MobileContainer>
+        <GlobalStyle />
+        <Suspense fallback={<div>Loading...</div>}>
+          <RouterProvider router={router} />
+        </Suspense>
+      </MobileContainer>
+    </RelayEnvironmentProvider>
   );
 }
 

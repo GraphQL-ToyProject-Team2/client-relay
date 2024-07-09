@@ -2,73 +2,18 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { ChevronLeft } from '@material-ui/icons';
 import Footer from '../components/Footer';
+import { PreloadedQuery, usePreloadedQuery } from 'react-relay';
+import { getAccommodationsQuery } from '../queries/__generated__/getAccommodationsQuery.graphql';
+import getWishlist from '../queries/getWishlist';
 
-interface WishListAccommodation {
-  id: string;
-  title: string;
-  description: string;
-  price: number;
-  host: {
-    id: string;
-    name: string;
-  };
-  images: string[];
-  isLiked: boolean;
-}
+type Props = {
+  queryRef: PreloadedQuery<getAccommodationsQuery>;
+};
 
-interface Accommodations {
-  accommodations: WishListAccommodation[];
-}
-
-const WishList = () => {
+const WishList = (props: Props) => {
   const navigate = useNavigate();
+  const accommodations = usePreloadedQuery(getWishlist, props.queryRef).accommodations;
 
-  const accommodations = [
-    {
-      id: '1',
-      title: '편안한 공간',
-      price: 10000,
-      host: {
-        id: '1',
-        name: '호스트1',
-      },
-      images: ['https://images.unsplash.com/photo-1628585901557-0c7a9e4b0c8f'],
-      isLiked: true,
-    },
-    {
-      id: '2',
-      title: '편안한 공간',
-      price: 10000,
-      host: {
-        id: '1',
-        name: '호스트1',
-      },
-      images: ['https://images.unsplash.com/photo-1628585901557-0c7a9e4b0c8f'],
-      isLiked: true,
-    },
-    {
-      id: '3',
-      title: '편안한 공간',
-      price: 10000,
-      host: {
-        id: '1',
-        name: '호스트1',
-      },
-      images: ['https://images.unsplash.com/photo-1628585901557-0c7a9e4b0c8f'],
-      isLiked: true,
-    },
-    {
-      id: '4',
-      title: '편안한 공간',
-      price: 10000,
-      host: {
-        id: '1',
-        name: '호스트1',
-      },
-      images: ['https://images.unsplash.com/photo-1628585901557-0c7a9e4b0c8f'],
-      isLiked: true,
-    },
-  ];
   const likedAccommodations = accommodations?.filter((item) => item.isLiked);
 
   return (

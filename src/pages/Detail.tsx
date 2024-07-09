@@ -13,51 +13,19 @@ import {
   Tv,
 } from '@material-ui/icons';
 import styled from 'styled-components';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { PreloadedQuery, usePreloadedQuery } from 'react-relay';
+import getDetail from '../queries/getDetail';
+import { getDetailQuery } from '../queries/__generated__/getDetailQuery.graphql';
 
-interface Accommodation {
-  accommodation: {
-    title: string;
-    description: string;
-    price: number;
-    host: {
-      id: string;
-      name: string;
-      avatar: string;
-      bio: string;
-    };
-    location: string;
-    images: string[];
-    isLiked: boolean;
-  };
-}
+type Props = {
+  queryRef: PreloadedQuery<getDetailQuery>;
+};
 
-interface LikeAccommodation {
-  likeAccommodation: {
-    id: string;
-    isLiked: boolean;
-    __typename: string;
-  };
-}
-
-const Detail = () => {
-  const { id } = useParams<{ id: string }>();
+const Detail = (props: Props) => {
   const navigate = useNavigate();
 
-  const accommodation = {
-    title: '',
-    description: '',
-    price: 0,
-    host: {
-      id: '',
-      name: '',
-      avatar: '',
-      bio: '',
-    },
-    location: '',
-    images: [],
-    isLiked: false,
-  };
+  const accommodation = usePreloadedQuery(getDetail, props.queryRef).accommodation;
 
   const handleLike = () => {
     console.log('toggle like');
