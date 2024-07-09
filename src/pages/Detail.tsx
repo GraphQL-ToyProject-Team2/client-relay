@@ -1,4 +1,3 @@
-import { gql, useMutation, useQuery } from '@apollo/client';
 import Diamond from '../assets/diamond.png';
 import {
   Apartment,
@@ -15,36 +14,6 @@ import {
 } from '@material-ui/icons';
 import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
-import { GET_WISHLIST } from './WishList';
-
-const GET_DETAIL = gql`
-  query GetAccommodation($id: ID!) {
-    accommodation(id: $id) {
-      title
-      description
-      price
-      host {
-        id
-        name
-        avatar
-        bio
-      }
-      location
-      images
-      isLiked
-    }
-  }
-`;
-
-const LIKE_ACCOMMODATION = gql`
-  mutation LikeAccommodation($id: ID!) {
-    likeAccommodation(id: $id) {
-      id
-      __typename
-      isLiked
-    }
-  }
-`;
 
 interface Accommodation {
   accommodation: {
@@ -73,42 +42,26 @@ interface LikeAccommodation {
 
 const Detail = () => {
   const { id } = useParams<{ id: string }>();
-
-  const { loading, error, data } = useQuery<Accommodation>(GET_DETAIL, { variables: { id: id }, skip: !id });
-  const accommodation = data?.accommodation;
-
-  const [likeAccommodation] = useMutation<LikeAccommodation>(LIKE_ACCOMMODATION, {
-    optimisticResponse: {
-      likeAccommodation: {
-        id: id!,
-        __typename: 'Accommodation',
-        isLiked: !data?.accommodation?.isLiked,
-      },
-    },
-    update(cache, { data }) {
-      if (!data) return;
-      cache.writeQuery<Accommodation>({
-        query: GET_DETAIL,
-        variables: { id: id },
-        data: {
-          accommodation: {
-            ...accommodation!,
-            isLiked: data?.likeAccommodation.isLiked,
-          },
-        },
-      });
-    },
-    refetchQueries: [{ query: GET_WISHLIST }],
-  });
-
-  const handleLike = () => {
-    likeAccommodation({ variables: { id: id } });
-  };
-
   const navigate = useNavigate();
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  const accommodation = {
+    title: '',
+    description: '',
+    price: 0,
+    host: {
+      id: '',
+      name: '',
+      avatar: '',
+      bio: '',
+    },
+    location: '',
+    images: [],
+    isLiked: false,
+  };
+
+  const handleLike = () => {
+    console.log('toggle like');
+  };
 
   return (
     <>

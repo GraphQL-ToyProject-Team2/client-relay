@@ -1,4 +1,4 @@
-# GraphQL, Apollo Client 기반 airbnb 클론 코딩 프로젝트 - client
+# GraphQL, Relay 기반 airbnb 클론 코딩 프로젝트 - client
 
 ## 👨‍👩‍👧‍👦 Authors
 
@@ -30,4 +30,4 @@
 - `Typescript`
 - `React.js`
 - `styled-components`
-- `Apollo Client`
+- `Relay`

@@ -1,24 +1,7 @@
-import { gql, useQuery } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { ChevronLeft } from '@material-ui/icons';
 import Footer from '../components/Footer';
-
-export const GET_WISHLIST = gql`
-  query GetAccommodations {
-    accommodations {
-      id
-      title
-      description
-      price
-      host {
-        name
-      }
-      images
-      isLiked
-    }
-  }
-`;
 
 interface WishListAccommodation {
   id: string;
@@ -39,12 +22,53 @@ interface Accommodations {
 
 const WishList = () => {
   const navigate = useNavigate();
-  const { loading, error, data } = useQuery<Accommodations>(GET_WISHLIST);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
-  const accommodations = data?.accommodations;
+  const accommodations = [
+    {
+      id: '1',
+      title: '편안한 공간',
+      price: 10000,
+      host: {
+        id: '1',
+        name: '호스트1',
+      },
+      images: ['https://images.unsplash.com/photo-1628585901557-0c7a9e4b0c8f'],
+      isLiked: true,
+    },
+    {
+      id: '2',
+      title: '편안한 공간',
+      price: 10000,
+      host: {
+        id: '1',
+        name: '호스트1',
+      },
+      images: ['https://images.unsplash.com/photo-1628585901557-0c7a9e4b0c8f'],
+      isLiked: true,
+    },
+    {
+      id: '3',
+      title: '편안한 공간',
+      price: 10000,
+      host: {
+        id: '1',
+        name: '호스트1',
+      },
+      images: ['https://images.unsplash.com/photo-1628585901557-0c7a9e4b0c8f'],
+      isLiked: true,
+    },
+    {
+      id: '4',
+      title: '편안한 공간',
+      price: 10000,
+      host: {
+        id: '1',
+        name: '호스트1',
+      },
+      images: ['https://images.unsplash.com/photo-1628585901557-0c7a9e4b0c8f'],
+      isLiked: true,
+    },
+  ];
   const likedAccommodations = accommodations?.filter((item) => item.isLiked);
 
   return (
